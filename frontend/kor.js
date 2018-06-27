@@ -1,5 +1,5 @@
 window.language = window.language || {};
-window.language['kr'] = {
+window.language['kor'] = {
     'total': '총 개수',
     'locked': '보류중',
     'available': '전송 가능',
