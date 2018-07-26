@@ -145,4 +145,6 @@ window.language['jp'] = {
     'tip_generate_import_key': 'Import keyを生成し、デスクトップのウォレットに導入できます。<br>File > Import key に導入してください',
     'import_key_for_this_address': 'ウォレットのImport key',
     'tip_import_key_for_this_address': 'Import keyを安全な場所に保管してください。誰でも共有しないください。',
+    'inactive_address': '休眠ウォレット',
+    'inactive_address_tip': 'このウォレットは３０日利用がされていないのため、無効にしました。 <br> このウォレットをダウンロードして、デスクトップのウォレットでご利用してください: <a href="https://bbscoin.xyz/download/">https://bbscoin.xyz/download/</a><br>ウォレットのアンロックを入力して、Import Keyを作成する。<br>そして File > Import key に導入してください.'
 };

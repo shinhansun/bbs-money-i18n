@@ -71,4 +71,7 @@ module.exports = {
     'cannot_find_app_id': 'Cannot find app id or site id',
     'wait_before_create_new_address': (time) => `You need to wait for ${parseInt(time / 1000)} seconds before creating a new address`,
     'invalid_address': (address) => `Invalid address: ${address}`,
+    'missing_appid': 'Missing app id',
+    'unsupported_webhook_action': (action) => `Unsupported webhook action ${action}`,
+    'missing_required_param': (action, param) => `Missing required parameter ${param} for webhook action ${action}` 
 }

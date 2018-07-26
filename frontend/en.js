@@ -145,4 +145,17 @@ window.language['en'] = {
     'tip_generate_import_key': 'You can generate the import key for importing your web wallet to the desktop wallet.<br>Please click "File" > "Import key" on the desktop wallet then paste in the import key.',
     'import_key_for_this_address': 'The import key for this wallet address',
     'tip_import_key_for_this_address': 'Please keep your import key in a safe place. Do not share it with anyone.',
+    'inactive_address': 'Inactive address',
+    'inactive_address_tip': 'This wallet address has been disabled from synchronizing due to no activity for 30 days. <br> However you can still access to your wallet by importing it to the desktop wallet: <a href="https://bbscoin.xyz/download/">https://bbscoin.xyz/download/</a><br>Please enter your wallet password again to generate the import key. <br>After getting the key, you can click "File" > "Import key" on the desktop wallet to import it.',
+    'webhook_config': 'Webhook',
+    'tip_webhook_config': 'Webhook is an efficient way of querying BBS transaction<br>Please follow the instructions in the integration.',
+    'webhook_callback_url': 'Webhook callback URL',
+    'tip_webhook_callback_url': 'Callback URL must starts with http:// or https://',
+    'update_callback_url': 'Update callback URL',
+    'webhook_id': 'Webhook ID',
+    'webhook_action': 'Action',
+    'webhook_params': 'Parameters',
+    'webhook_last_call': 'Last call',
+    'webhook_last_status': 'Last status',
+    'registered_webhook': 'Registered webhook'
 };

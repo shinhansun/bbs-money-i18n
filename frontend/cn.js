@@ -145,4 +145,6 @@ window.language['cn'] = {
     'tip_generate_import_key': '你可以生成 Import key 用来将钱包导入到桌面钱包软件中。<br>请点击桌面钱包的 File 菜单 > Import key 来导入。',
     'import_key_for_this_address': '当前钱包的 Import key',
     'tip_import_key_for_this_address': '请确保 Import key 存放于安全的地方。不要分享给任何人。',
+    'inactive_address': '闲置地址',
+    'inactive_address_tip': '此钱包地址已停止同步，由于地址已闲置30天以上。<br>在导入钱包到桌面钱包后，你仍然可以操作此钱包： <a href="https://bbscoin.xyz/download/">https://bbscoin.xyz/download/</a><br>请再次输入你的钱包密码来生成 Import Key。 <br>在你获得了 Import Key 之后，请在桌面客户端点击 “File” 然后点击 ”Import key“ 来导入钱包。'
 };
