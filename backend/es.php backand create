@@ -1,0 +1,77 @@
+const config = require('../common/helpers').getConfig();
+
+module.exports = {
+    'must_agree_tos': 'You must agree the terms of use and conditions',
+    'email_address_registered': 'The email address has been registered',
+    'invalid_recaptcha': 'reCAPTCHA is not invalid',
+    'verification_email_subject': 'BBS.money Account Activation',
+    'verification_email_body': ({ email, code }) => `
+        <p>Hola:</p>
+        <p>Para completar el proceso de registro en BBS.money, deberá dirigirse a la siguiente URL en su navegador web.</p>
+        <p>Tenga en cuenta que el código de verificación solo valida por 24 horas.</p>
+        <p><a href="${config.www.baseUrl}/verify.html?email=${encodeURIComponent(email)}&amp;code=${code}">${config.www.baseUrl}/verify.html?email=${email}&amp;code=${code}</a></p> 
+        <p>Si el enlace anterior no funciona correctamente, vaya a:</p>
+        <p><a href="${config.www.baseUrl}/verify.html ">${config.www.baseUrl}/verify.html</a></p>
+        <p>Por favor, vuelva a verificar su cuenta o contraseña<br>Email: ${email}<br>Verification Code: ${code}<br></p>
+        <p>Gracias, <br>BBS.money <br>${config.www.baseUrl}</p>`,
+    'wrong_account_password': 'No se puede verificar la cuenta o contraseña',
+    'wrong_wallet_password': 'No se puede verificar la contraseña de la billetera',
+    'account_not_verified': 'La cuenta no está verificada',
+    'missing_wallet_password': 'Falta la contraseña de la billetera',
+    'missing_address_or_wallet_password': 'Falta la dirección o la contraseña de la billetera',
+    'cannot_find_address': 'No se puede encontrar la dirección',
+    'wallet_password_too_short': 'La contraseña de Wallet debe contener al menos 6 caracteres',
+    'max_address_count_reached': (count) => `Una cuenta solo puede crear ${count} direcciones`,
+    'need_both_view_and_spend': 'Necesita ver y pasar claves secretas',
+    'incorrect_view': 'Tecla de vista incorrecta',
+    'incorrect_spend': 'Clave de gasto incorrecta',
+    'tx_too_big': 'El tamaño de la transacción es demasiado grande. Intenta reducir la cantidad o el recuento de mixin',
+    'fee_too_low': (minimum) => `La tarifa de transacción es menor que el mínimo: ${minimum}`,
+    'amount_too_big': 'El monto total de la transferencia es demasiado grande',
+    'insufficient_balance': ({ needed, found }) => `Saldo insuficiente. Necesario ${needed}. Encontró ${found}`,
+    'invalid_payment_id': (paymentId) => `Identificación de pago inválida: ${paymentId}`,
+    'missing_destination_address': 'Falta la dirección de destino',
+    'invalid_destination_address': (address) => `Dirección de destino no válida: ${address}`,
+    'missing_amount': `Cantidad de transferencia faltante`,
+    'wrong_amount': `Cantidad de transferencia incorrecta`,
+    'invalid_amount': (amount) => `Monto de transferencia no válido: ${amount}`,
+    'missing_required_field': 'Falta un campo obligatorio',
+    'wrong_mixing_level': 'Nivel incorrecto de mixina',
+    'wrong_tx_fee': 'Tarifa de transacción incorrecta',
+    'spending_address_not_authorized': 'La dirección autorizada no coincide con la dirección de origen',
+    'mixin_too_big': (mixin) => `Mixin es muy grande ${mixin}`,
+    'same_new_password': 'La nueva contraseña no puede ser la misma que la contraseña anterior',
+    'reset_password_email_subject': 'Restablecimiento de contraseña de BBS.money',
+    'reset_password_email_body': ({ email, code }) => `
+        <p>Hola:</p>
+        <p>Para completar la fase de reinicio de la contraseña de su cuenta en BBS.money, deberá dirigirse a la siguiente URL en su navegador web.</p>
+        <p>Tenga en cuenta que el código de verificación solo valida por 24 horas.</p>
+        <p><a href="${config.www.baseUrl}/reset-password.html?email=${encodeURIComponent(email)}&amp;code=${code}">${config.www.baseUrl}/reset-password.html?email=${email}&amp;code=${code}</a></p> 
+        <p>Si el enlace anterior no funciona correctamente, vaya a:</p>
+        <p><a href="${config.www.baseUrl}/reset-password.html">${config.www.baseUrl}/reset-password.html</a></p>
+        <p>Deberá ingresar la siguiente información:<br>Email: ${email}<br>Código de verificación: ${code}<br></p>
+        <p>Gracias, <br>BBS.money <br>${config.www.baseUrl}</p>`,
+    'reset_unverified_user_email_subject': 'Restablecimiento de contraseña de BBS.money',
+    'reset_unverified_user_email_body': (email) => `
+        <p>Hola:</p>
+        <p>No podemos restablecer la contraseña de una cuenta no verificada: ${email}</p>
+        <p>Simplemente puede ir a la siguiente URL para registrar su cuenta nuevamente con la misma dirección de correo electrónico.</p>
+        <p><a href="${config.www.baseUrl}/register.html">${config.www.baseUrl}/register.html</a></p> 
+        <p>Gracias, <br>BBS.money <br>${config.www.baseUrl}</p>`,
+    'tmp_password_email_subject': 'BBS.money Nueva contraseña',
+    'tmp_password_email_body': ({ email, newPassword}) => `
+        <p>Hola:</p>
+        <p>Su contraseña para la cuenta ${email} en BBS.money se ha restablecido. </p>
+        <p>Tu nueva contraseña es: ${newPassword}</p>
+        <p>Diríjase a la siguiente URL para iniciar sesión en BBS.money. <br>Debe cambiar su contraseña en el perfil del usuario haciendo clic en su avatar en la esquina superior derecha.</p>
+        <p><a href="${config.www.baseUrl}/login.html">${config.www.baseUrl}/login.html</a></p>
+        <p>Gracias, <br>BBS.money <br>${config.www.baseUrl}</p>`,
+    'too_many_unverified_tx': (left) => `Verificación de transacción interrumpida. Esta dirección tiene ${left} transacciones no verificadas a la izquierda. Inténtalo de nuevo.`,
+    'fail_to_send': 'Error al enviar la transacción Por favor, reduzca su cantidad e intente de nuevo.',
+    'cannot_find_app_id': 'No se puede encontrar el ID de la aplicación o el ID del sitio',
+    'wait_before_create_new_address': (time) => `Tienes que esperar ${parseInt(time / 1000)} segundos antes de crear una nueva dirección`,
+    'invalid_address': (address) => `Dirección inválida: ${address}`,
+    'missing_appid': 'Falta el ID de la aplicación',
+    'unsupported_webhook_action': (action) => `Acción webhook no admitida ${action}`,
+    'missing_required_param': (action, param) => `Falta el parámetro requerido ${param} para la acción webhook ${action}` 
+}
