@@ -1,0 +1,77 @@
+const config = require('../common/helpers').getConfig();
+
+module.exports = {
+    'must_agree_tos': 'Anda harus menyetujui persyaratan penggunaan dan ketentuan',
+    'email_address_registered': 'Alamat email telah terdaftar',
+    'invalid_recaptcha': 'reCAPTCHA tidak valid',
+    'verification_email_subject': 'BBS.money Aktivasi Akun',
+    'verification_email_body': ({ email, code }) => `
+        <p>Hai:</p>
+        <p>Untuk menyelesaikan proses pendaftaran di BBS.money, Anda harus membuka URL di bawah ini di browser web Anda.</p>
+        <p>Harap dicatat bahwa kode verifikasi hanya berlaku selama 24 jam.</p>
+        <p><a href="${config.www.baseUrl}/verify.html?email=${encodeURIComponent(email)}&amp;code=${code}">${config.www.baseUrl}/verify.html?email=${email}&amp;code=${code}</a></p> 
+        <p>Jika tautan di atas tidak berfungsi dengan benar, silakan buka:</p>
+        <p><a href="${config.www.baseUrl}/verify.html ">${config.www.baseUrl}/verify.html</a></p>
+        <p>Anda harus memasukkan informasi berikut:<br>Email: ${email}<br>Kode verifikasi:${code}<br></p>
+        <p>Terima kasih, <br>BBS.money <br>${config.www.baseUrl}</p>`,
+    'wrong_account_password': 'Tidak dapat memverifikasi akun atau kata sandi',
+    'wrong_wallet_password': 'Tidak dapat memverifikasi kata sandi dompet',
+    'account_not_verified': 'Akun tidak diverifikasi',
+    'missing_wallet_password': 'Kata sandi dompet tidak ada',
+    'missing_address_or_wallet_password': 'Alamat atau kata sandi dompet tidak ada',
+    'cannot_find_address': 'Tidak dapat menemukan alamat',
+    'wallet_password_too_short': 'Sandi dompet harus berisi setidaknya 6 karakter',
+    'max_address_count_reached': (count) => `Akun hanya dapat dibuat ${count} alamat`,
+    'need_both_view_and_spend': 'Perlu kedua tampilan dan habiskan kunci rahasia',
+    'incorrect_view': 'Kunci tampilan salah',
+    'incorrect_spend': 'Kunci pembelanjaan salah',
+    'tx_too_big': 'Ukuran transaksi terlalu besar. Cobalah untuk menurunkan jumlah atau jumlah mixin',
+    'fee_too_low': (minimum) => `Biaya transaksi lebih rendah dari minimum: ${minimum}`,
+    'amount_too_big': 'Jumlah transfer total terlalu besar',
+    'insufficient_balance': ({ needed, found }) => `Saldo tidak mencukupi. Dibutuhkan ${needed}. Found ${found}`,
+    'invalid_payment_id': (paymentId) => `ID pembayaran tidak valid: ${paymentId}`,
+    'missing_destination_address': 'Alamat tujuan tidak ada',
+    'invalid_destination_address': (address) => `Alamat tujuan tidak valid: ${address}`,
+    'missing_amount': `Jumlah transfer tidak ada`,
+    'wrong_amount': `Jumlah transfer salah`,
+    'invalid_amount': (amount) => `Jumlah transfer tidak valid: ${amount}`,
+    'missing_required_field': 'Bidang yang wajib diisi tidak ada',
+    'wrong_mixing_level': 'Tingkat mixin salah',
+    'wrong_tx_fee': 'Biaya transaksi salah',
+    'spending_address_not_authorized': 'Alamat resmi tidak sesuai dengan alamat sumber',
+    'mixin_too_big': (mixin) => `Mixin terlalu besar ${mixin}`,
+    'same_new_password': 'Kata sandi baru tidak boleh sama dengan kata sandi lama',
+    'reset_password_email_subject': 'BBS.money Atur Ulang Kata Sandi',
+    'reset_password_email_body': ({ email, code }) => `
+        <p>Hai:</p>
+        <p>Untuk menyelesaikan fase pengaturan ulang kata sandi akun Anda di BBS.money, Anda harus membuka URL di bawah ini di browser web Anda.</p>
+        <p>Harap dicatat bahwa kode verifikasi hanya berlaku selama 24 jam.</p>
+        <p><a href="${config.www.baseUrl}/reset-password.html?email=${encodeURIComponent(email)}&amp;code=${code}">${config.www.baseUrl}/reset-password.html?email=${email}&amp;code=${code}</a></p> 
+        <p>Jika tautan di atas tidak berfungsi dengan benar, silakan buka:</p>
+        <p><a href="${config.www.baseUrl}/reset-password.html">${config.www.baseUrl}/reset-password.html</a></p>
+        <p>Anda harus memasukkan informasi berikut:<br>Email: ${email}<br>Kode verifikasi: ${code}<br></p>
+        <p>Terima kasih, <br>BBS.money <br>${config.www.baseUrl}</p>`,
+    'reset_unverified_user_email_subject': 'BBS.money Atur Ulang Kata Sandi',
+    'reset_unverified_user_email_body': (email) => `
+        <p>Hai:</p>
+        <p>Kami tidak dapat mengatur ulang kata sandi untuk akun yang belum diverifikasi: ${email}</p>
+        <p>Anda cukup pergi ke URL di bawah ini untuk mendaftarkan akun Anda lagi dengan alamat email yang sama.</p>
+        <p><a href="${config.www.baseUrl}/register.html">${config.www.baseUrl}/register.html</a></p> 
+        <p>Terima kasih, <br>BBS.money <br>${config.www.baseUrl}</p>`,
+    'tmp_password_email_subject': 'BBS.money Kata Sandi Baru',
+    'tmp_password_email_body': ({ email, newPassword}) => `
+        <p>Hai:</p>
+        <p>Kata sandi Anda untuk akun ${email} di BBS.money telah diatur ulang. </p>
+        <p>Kata sandi baru Anda adalah: ${newPassword}</p>
+        <p>Silakan pergi ke URL di bawah ini untuk masuk ke BBS.money. <br>Anda harus mengubah kata sandi Anda di profil pengguna dengan mengklik avatar Anda di sudut kanan atas.</p>
+        <p><a href="${config.www.baseUrl}/login.html">${config.www.baseUrl}/login.html</a></p>
+        <p>Terima kasih, <br>BBS.money <br>${config.www.baseUrl}</p>`,
+    'too_many_unverified_tx': (left) => `Verifikasi transaksi terganggu. Alamat ini memiliki ${left} transaksi yang belum diverifikasi tersisa. Silakan coba lagi.`,
+    'fail_to_send': 'Gagal mengirim transaksi. Harap kurangi jumlah Anda dan coba lagi.',
+    'cannot_find_app_id': 'Tidak dapat menemukan id aplikasi atau id situs',
+    'wait_before_create_new_address': (time) => `Anda harus menunggu ${parseInt(time / 1000)} detik sebelum membuat alamat baru`,
+    'invalid_address': (address) => `Alamat tidak valid: ${address}`,
+    'missing_appid': 'ID aplikasi tidak ada',
+    'unsupported_webhook_action': (action) => `Tindakan webhook tidak didukung ${action}`,
+    'missing_required_param': (action, param) => `Parameter yang diperlukan tidak ada ${param} untuk aksi webhook ${action}` 
+}
