@@ -1,0 +1,77 @@
+const config = require('../common/helpers').getConfig();
+
+module.exports = {
+    'must_agree_tos': 'يجب أن توافق على شروط الاستخدام والشروط',
+    'email_address_registered': 'تم تسجيل عنوان البريد الإلكتروني',
+    'invalid_recaptcha': 'غير صالح reCAPTCHA',
+    'verification_email_subject': 'تفعيل الحساب BBS.money',
+    'verification_email_body': ({ email, code }) => `
+        <p>مرحبا:</p>
+        <p>أدناه في متصفح الويب الخاص بك. URL  ، ستحتاج إلى الانتقال إلى BBS.money لإكمال عملية التسجيل على</p>
+        <p>ساعة. I 24 I يرجى ملاحظة أن رمز التحقق لا يثبت صحة إلا لمدة</p>
+        <p><a href="${config.www.baseUrl}/verify.html?email=${encodeURIComponent(email)}&amp;code=${code}">${config.www.baseUrl}/verify.html?email=${email}&amp;code=${code}</a></p> 
+        <p>إذا كان الرابط أعلاه لا يعمل بشكل صحيح ، فيرجى الانتقال إلى:</p>
+        <p><a href="${config.www.baseUrl}/verify.html ">${config.www.baseUrl}/verify.html</a></p>
+        <p>ستحتاج إلى إدخال المعلومات التالية:<br>Email: ${email}<br>رمز التحقق: ${code}<br></p>
+        <p>شكرا لكم، <br>BBS.money <br>${config.www.baseUrl}</p>`,
+    'wrong_account_password': 'غير قادر على التحقق من الحساب أو كلمة المرور',
+    'wrong_wallet_password': 'غير قادر على التحقق من كلمة مرور المحفظة',
+    'account_not_verified': 'لم يتم التحقق من الحساب',
+    'missing_wallet_password': 'كلمة مرور مفقودة',
+    'missing_address_or_wallet_password': 'عنوان مفقود أو كلمة مرور المحفظة',
+    'cannot_find_address': 'لا يمكن العثور على العنوان',
+    'wallet_password_too_short': 'أحرف على الأقل I 6 I يجب أن تحتوي كلمة مرور المحفظة على',
+    'max_address_count_reached': (count) => `يمكن إنشاء حساب فقط ${count} عناوين`,
+    'need_both_view_and_spend': 'تحتاج إلى كل من عرض وقضاء مفاتيح سرية',
+    'incorrect_view': 'مفتاح عرض غير صحيح',
+    'incorrect_spend': 'مفتاح الإنفاق غير صحيح',
+    'tx_too_big': 'mixin حجم الصفقة كبير جدا. محاولة خفض كمية أو عدد',
+    'fee_too_low': (minimum) => `رسوم المعاملات أقل من الحد الأدنى: ${minimum}`,
+    'amount_too_big': 'إجمالي مبلغ التحويل كبير جدًا',
+    'insufficient_balance': ({ needed, found }) => `عدم كفاية الرصيد. بحاجة${needed}. وجدت ${found}`,
+    'invalid_payment_id': (paymentId) => `معرف دفع غير صالح: ${paymentId}`,
+    'missing_destination_address': 'عنوان الوجهة مفقود',
+    'invalid_destination_address': (address) => `عنوان الوجهة غير صالح: ${address}`,
+    'missing_amount': `مبلغ النقل المفقود`,
+    'wrong_amount': `مبلغ نقل خاطئ`,
+    'invalid_amount': (amount) => `مبلغ التحويل غير صالح: ${amount}`,
+    'missing_required_field': 'مفقود حقل مطلوب',
+    'wrong_mixing_level': 'مستوى مخفي خاطئ',
+    'wrong_tx_fee': 'رسوم معاملات خاطئة',
+    'spending_address_not_authorized': 'العنوان المعتمد غير متطابق مع عنوان المصدر',
+    'mixin_too_big': (mixin) => `كبير جدا Mixin ${mixin}`,
+    'same_new_password': 'لا يمكن أن تكون كلمة المرور الجديدة هي نفس كلمة المرور القديمة',
+    'reset_password_email_subject': 'إعادة تعيين كلمة المرور BBS.money',
+    'reset_password_email_body': ({ email, code }) => `
+        <p>مرحبا:</p>
+        <p>لإكمال مرحلة إعادة تعيين كلمة مرور حسابك I  أدناه في متصفح الويب الخاص بك. URL ، ستحتاج إلى الانتقال إلى عنوان BBS.money في</p>
+        <p>ساعة. I 24 يرجى ملاحظة أن رمز التحقق لا يثبت صحة إلا لمدة</p>
+        <p><a href="${config.www.baseUrl}/reset-password.html?email=${encodeURIComponent(email)}&amp;code=${code}">${config.www.baseUrl}/reset-password.html?email=${email}&amp;code=${code}</a></p> 
+        <p>إذا كان الرابط أعلاه لا يعمل بشكل صحيح ، فيرجى الانتقال إلى:</p>
+        <p><a href="${config.www.baseUrl}/reset-password.html">${config.www.baseUrl}/reset-password.html</a></p>
+        <p>ستحتاج إلى إدخال المعلومات التالية:<br>Email: ${email}<br>رمز التحقق: ${code}<br></p>
+        <p>شكرا لكم، <br>BBS.money <br>${config.www.baseUrl}</p>`,
+    'reset_unverified_user_email_subject': 'إعادة تعيين كلمة المرور BBS.money',
+    'reset_unverified_user_email_body': (email) => `
+        <p>مرحبا:</p>
+        <p>لا يمكننا إعادة تعيين كلمة المرور لحساب لم يتم التحقق منه: ${email}</p>
+        <p>أدناه لتسجيل حسابك مرة أخرى باستخدام نفس عنوان البريد الإلكتروني. URL يمكنك ببساطة الانتقال إلى عنوان</p>
+        <p><a href="${config.www.baseUrl}/register.html">${config.www.baseUrl}/register.html</a></p> 
+        <p>شكرا لكم، <br>BBS.money <br>${config.www.baseUrl}</p>`,
+    'tmp_password_email_subject': 'كلمة مرور جديدة BBS.money',
+    'tmp_password_email_body': ({ email, newPassword}) => `
+        <p>مرحبا:</p>
+        <p>كلمة المرور الخاصة بك للحساب ${email} تم إعادة تعيين. BBS.money في </p>
+        <p>كلمة المرور الجديدة: ${newPassword}</p>
+        <p>BBS.money أدناه لتسجيل الدخول إلى URL يرجى الانتقال إلى عنوان <br>يجب عليك تغيير كلمة المرور الخاصة بك في ملف تعريف المستخدم عن طريق النقر فوق الصورة الرمزية الخاصة بك في الزاوية اليمنى العليا.</p>
+        <p><a href="${config.www.baseUrl}/login.html">${config.www.baseUrl}/login.html</a></p>
+        <p>شكرا لكم، <br>BBS.money <br>${config.www.baseUrl}</p>`,
+    'too_many_unverified_tx': (left) => `التحقق من المعاملة توقف. هذا العنوان اشكركم ، ${left} المعاملات غير المؤكدة اليسار. حاول مرة اخرى.`,
+    'fail_to_send': 'فشل إرسال المعاملة. يرجى خفض المبلغ والمحاولة مرة أخرى.',
+    'cannot_find_app_id': 'لا يمكن العثور على معرف التطبيق أو معرف الموقع',
+    'wait_before_create_new_address': (time) => `أنت في حاجة لانتظار ${parseInt(time / 1000)} ثوانٍ قبل إنشاء عنوان جديد`,
+    'invalid_address': (address) => `عنوان خاطئ: ${address}`,
+    'missing_appid': 'رقم تعريف التطبيق مفقود',
+    'unsupported_webhook_action': (action) => `إجراء webhook غير معتمد ${action}`,
+    'missing_required_param': (action, param) => `معلمة مطلوبة مفقودة ${param} للعمل webhook ${action}` 
+}
